@@ -1,0 +1,20 @@
+{
+  "name": "main-theme",
+  "version": "0.0.1",
+  "authors": [
+    "Calvin Yeung <calvin0302@icloud.com>"
+  ],
+  "description": "hbsahk-theme",
+  "main": "css",
+  "keywords": [
+    "theme"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
