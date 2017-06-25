@@ -136,13 +136,13 @@ function createCalendar(layout, firstDay, numbDays, monthNum, yearNum) {
 		calendarString += '<div class=\"col-md-2 calendar-btn\"><span onClick=\"changedate(\'nextmo\', \'full\')\"><span class="btn-change-date">' + next_month + '<\/span> »<\/span><\/div>';
 		calendarString += '<div class=\"col-md-2 calendar-btn\"><span onClick=\"changedate(\'nextyr\', \'full\')\"><span class="btn-change-date">' + next_year + '<\/span> »<\/span><\/div>';
 	} else {
-		calendarString += '<div class=\"col-md-2 calendar-btn\"><span onClick=\"changedate(\'prevyr\', \'compact\')\">«<\/span><\/div>';
-		calendarString += '<div class=\"col-md-2 calendar-btn\"><span onClick=\"changedate(\'prevmo\', \'compact\')\">«<\/span><\/div>';
+		calendarString += '<div class=\"col-md-2 calendar-btn\"><span onClick=\"changedate(\'prevyr\', \'compact\')\">< ' + [yearNum-1] + '<\/span><\/div>';
+		calendarString += '<div class=\"col-md-2 calendar-btn\"><span onClick=\"changedate(\'prevmo\', \'compact\')\">Previous Month<\/span><\/div>';
 		calendarString += '<div class=\"col-md-4 calendar-title\" colspan=\"3\"><span>' + wordMonth[monthNum - 1] + '&nbsp;&nbsp;' + yearNum + '<\/span><\/div>';
-		calendarString += '<div class=\"col-md-2 calendar-btn\"><span onClick=\"changedate(\'nextmo\', \'compact\')\">»<\/span><\/div>';
-		calendarString += '<div class=\"col-md-2 calendar-btn\"><span onClick=\"changedate(\'nextyr\', \'compact\')\">»<\/span><\/div>';
+		calendarString += '<div class=\"col-md-2 calendar-btn\"><span onClick=\"changedate(\'nextmo\', \'compact\')\">Next Month<\/span><\/div>';
+		calendarString += '<div class=\"col-md-2 calendar-btn\"><span onClick=\"changedate(\'nextyr\', \'compact\')\">' + [yearNum+1] + ' ><\/span><\/div>';
 	}	
-	
+	calendarString += '<br /><br /><br />';
 	calendarString += '<table class=\"calendar-table table table-bordered\">';
 	calendarString += '<tbody>';
 
