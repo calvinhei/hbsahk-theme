@@ -18,7 +18,7 @@ var monthNum_full = todaysMonth;
 var yearNum_full = todaysYear;
 var monthNum_compact = todaysMonth;
 var yearNum_compact = todaysYear;
-var events_json = base_url + "events.json";
+var events_json = "events.json";
 
 var tiva_events = [];
 var order_num = 0;
