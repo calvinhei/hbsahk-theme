@@ -159,7 +159,7 @@ function createCalendar(layout, firstDay, numbDays, monthNum, yearNum) {
 	} else {
 		calendarString += '<div class=\"col-md-2 calendar-btn\"><span onClick=\"changedate(\'prevyr\', \'compact\')\">< ' + [yearNum-1] + '<\/span><\/div>';
 		calendarString += '<div class=\"col-md-2 calendar-btn\"><span onClick=\"changedate(\'prevmo\', \'compact\')\">Previous Month<\/span><\/div>';
-		calendarString += '<div class=\"col-md-4 calendar-title\" colspan=\"3\"><span>' + wordMonth[monthNum - 1] + '&nbsp;&nbsp;' + yearNum + '<\/span><\/div>';
+		calendarString += '<div class=\"col-md-4 calendar-title\" colspan=\"3\"><h1>' + wordMonth[monthNum - 1] + '&nbsp;&nbsp;' + yearNum + '<\/h1><\/div>';
 		calendarString += '<div class=\"col-md-2 calendar-btn\"><span onClick=\"changedate(\'nextmo\', \'compact\')\">Next Month<\/span><\/div>';
 		calendarString += '<div class=\"col-md-2 calendar-btn\"><span onClick=\"changedate(\'nextyr\', \'compact\')\">' + [yearNum+1] + ' ><\/span><\/div>';
 	}	
@@ -168,9 +168,10 @@ function createCalendar(layout, firstDay, numbDays, monthNum, yearNum) {
 	calendarString += '<tbody>';
 
 	
-	calendarString += '<tr class="active">';
+	calendarString += '<tr class="active month-bar">';
 	for (var m = 0; m < wordDay.length; m++) {
-		calendarString += '<th>' + wordDay[m].substring(0, 3) + '<\/th>';
+// 		calendarString += '<th class="month-text">' + wordDay[m].substring(0, 3) + '<\/th>';
+		calendarString += '<th class="month-text">' + wordDay[m] + '<\/th>';
 	}
 	calendarString += '<\/tr>';
 
@@ -191,13 +192,13 @@ function createCalendar(layout, firstDay, numbDays, monthNum, yearNum) {
 						if ((x == 1) || (x == 7)) {
 							daycounter_s = '<span class=\"calendar-day-weekend\">' + daycounter + '</span>';
 						} else {
-							daycounter_s = daycounter;
+							daycounter_s = '<span>' + daycounter + '</span>';
 						}
 					} else {
 						if ((x == 6) || (x == 7)) {
 							daycounter_s = '<span class=\"calendar-day-weekend\">' + daycounter + '</span>';
 						} else {
-							daycounter_s = daycounter;
+							daycounter_s = '<span>' + daycounter + '</span>';
 						}
 					}
 					
@@ -735,8 +736,8 @@ jQuery(document).ready(function(){
 	// Init calendar compact
 	if (jQuery('.tiva-events-calendar.compact').length) {
 		jQuery('.tiva-events-calendar.compact').html(	'<div class="events-calendar-bar">'
-															+ '<span class="bar-btn calendar-view active"><i class="fa fa-calendar-o"></i>' + calendar_view + '</span>'
 															+ '<span class="bar-btn list-view"><i class="fa fa-list"></i>' + list_view + '</span>'
+															+ '<span class="bar-btn calendar-view active"><i class="fa fa-calendar-o"></i>' + calendar_view + '</span>'
 															+ '<span class="bar-btn back-calendar pull-right active"><i class="fa fa-caret-left"></i>' + back + '</span>'
 														+ '</div>'
 														+ '<div class="cleardiv"></div>'
