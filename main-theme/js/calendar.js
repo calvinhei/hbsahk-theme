@@ -13,12 +13,14 @@ var numbDays;
 var numevents = 0;
 var daycounter = 0;
 var calendarString = "";
+var dist_url = 'assets/dist/';
 
 var monthNum_full = todaysMonth;
 var yearNum_full = todaysYear;
 var monthNum_compact = todaysMonth;
 var yearNum_compact = todaysYear;
 var events_json = "events.json";
+// var events_json = base_url+"api/events?rows=10&filters=display:show&order_by=date:desc&lang="+language;
 
 var tiva_events = [];
 var order_num = 0;
@@ -352,7 +354,7 @@ function getEvents(day, month, year) {
 function showTooltip(id, layout, day, month, year, el) {
 	if (layout == 'full') {
 		if (tiva_events[id].image) {
-			var event_image = '<img src="' + tiva_events[id].image + '" alt="' + tiva_events[id].name + '" />';
+			var event_image = '<img src="' + dist_url + '/images/' + tiva_events[id].image + '" alt="' + tiva_events[id].name + '" />';
 		} else {
 			var event_image = '';
 		}
@@ -384,7 +386,7 @@ function showTooltip(id, layout, day, month, year, el) {
 		for (var i = 0; i < events.length; i++) {
 			if (typeof events[i] != "undefined") {
 				if (tiva_events[events[i].id].image) {
-					var event_image = '<img src="' + tiva_events[events[i].id].image + '" alt="' + tiva_events[events[i].id].name + '" />';
+					var event_image = '<img src="' + dist_url + '/images/' + tiva_events[events[i].id].image + '" alt="' + tiva_events[events[i].id].name + '" />';
 				} else {
 					var event_image = '';
 				}
@@ -475,7 +477,7 @@ function showEventList(layout, max_events) {
 		
 			// Event image
 			if (tiva_list_events[i].image) {
-				var event_image = '<img src="' + tiva_list_events[i].image + '" alt="' + tiva_list_events[i].name + '" />';
+				var event_image = '<img src="' + dist_url + '/images/' + tiva_list_events[i].image + '" alt="' + tiva_list_events[i].name + '" />';
 			} else {
 				var event_image = '';
 			}
@@ -508,7 +510,8 @@ function showEventList(layout, max_events) {
 					var event_day = wordDay[6];
 				}
 			}
-			var event_date = wordMonth[Number(tiva_list_events[i].month) - 1] + ' ' + tiva_list_events[i].day + ', ' + tiva_list_events[i].year;
+// 			var event_date = wordMonth[Number(tiva_list_events[i].month) - 1] + ' ' + tiva_list_events[i].day + ', ' + tiva_list_events[i].year;
+			var event_date = wordMonth[Number(tiva_list_events[i].month) - 1] + '<br />' + tiva_list_events[i].day;
 			
 			// End date
 			var event_end_time = '';
@@ -537,17 +540,27 @@ function showEventList(layout, max_events) {
 			
 			// Event image
 			if (tiva_list_events[i].image) {
-				var event_image = '<img src="' + tiva_list_events[i].image + '" alt="' + tiva_list_events[i].name + '" />';
+				var event_image = '<img src="' + dist_url + '/images/' + tiva_list_events[i].image + '" alt="' + tiva_list_events[i].name + '" />';
 			} else {
 				var event_image = '';
 			}
 			
 			jQuery('.tiva-event-list-compact').append(	'<div class="event-item">'
+															+ '<div class="col-md-12">'
+															+ '<div class="col-md-2">'
+// 															+ '<div class="event-date"><i class="fa fa-calendar-o"></i>' + event_day + ', ' + event_date + event_end_time + '</div>'
+															+ '<div class="event-date">' + event_date + '</div>'
+															+ '</div>'
+															+ '<div class="col-md-3">'
 															+ '<div class="event-image link" onclick="showEventDetail(' + tiva_list_events[i].id + ', \'compact\', 0, 0, 0)">' + event_image + '</div>'
-															+ '<div class="event-name link" onclick="showEventDetail(' + tiva_list_events[i].id + ', \'compact\', 0, 0, 0)">' + tiva_list_events[i].name + '</div>'
-															+ '<div class="event-date"><i class="fa fa-calendar-o"></i>' + event_day + ', ' + event_date + event_end_time + '</div>'
-															+ '<div class="event-time">' + event_time + '</div>'
-															+ '<div class="event-intro">' + getShortText(tiva_list_events[i].description, 15) + '</div>'	
+															+ '</div>'
+															+ '<div class="col-md-7">'
+															+ '<div class="event-name link" onclick="showEventDetail(' + tiva_list_events[i].id + ', \'compact\', 0, 0, 0)"><h2>' + tiva_list_events[i].name + '</h2></div>'
+// 															+ '<div class="event-time">' + event_time + '</div>'
+															+ '<div><a href="">Read More</a></div>'
+// 															+ '<div class="event-intro">' + getShortText(tiva_list_events[i].description, 15) + '</div>'
+															+ '</div>'															
+															+ '</div>'	
 														+ '</div>'
 														+ '<div class="cleardiv"></div>'
 													);
@@ -606,7 +619,7 @@ function showEventDetail(id, layout, day, month, year) {
 		
 		// Event image
 		if (tiva_events[id].image) {
-			var event_image = '<img src="' + tiva_events[id].image + '" alt="' + tiva_events[id].name + '" />';
+			var event_image = '<img src="' + dist_url + '/images/' + tiva_events[id].image + '" alt="' + tiva_events[id].name + '" />';
 		} else {
 			var event_image = '';
 		}
@@ -654,7 +667,8 @@ function showEventDetail(id, layout, day, month, year) {
 						var event_day = wordDay[6];
 					}
 				}
-				var event_date = wordMonth[Number(tiva_events[events[i].id].month) - 1] + ' ' + tiva_events[events[i].id].day + ', ' + tiva_events[events[i].id].year;
+// 				var event_date = wordMonth[Number(tiva_events[events[i].id].month) - 1] + ' ' + tiva_events[events[i].id].day + ', ' + tiva_events[events[i].id].year;
+				var event_date = wordMonth[Number(tiva_events[events[i].id].month) - 1] + '<br />' + tiva_events[events[i].id].day;
 				
 				// End date
 				var event_end_time = '';
@@ -683,7 +697,7 @@ function showEventDetail(id, layout, day, month, year) {
 				
 				// Event image
 				if (tiva_events[events[i].id].image) {
-					var event_image = '<img src="' + tiva_events[events[i].id].image + '" alt="' + tiva_events[events[i].id].name + '" />';
+					var event_image = '<img src="' + dist_url + '/images/' + tiva_events[events[i].id].image + '" alt="' + tiva_events[events[i].id].name + '" />';
 				} else {
 					var event_image = '';
 				}
@@ -703,12 +717,25 @@ function showEventDetail(id, layout, day, month, year) {
 				}
 			
 				jQuery('.tiva-event-detail-compact').append( 	'<div class="event-item">'
+																	+ '<div class="col-md-12">'
+																	+ '<div class="col-md-2">'
+// 																	+ '<div class="event-date"><i class="fa fa-calendar-o"></i>' + event_day + ', ' + event_date + event_end_time + '</div>'
+																	+ '<div class="event-date">'  + event_date + '</div>'
+																	+ '</div>'
+																	+ '<div class="col-md-3">'
 																	+ '<div class="event-image">' + event_image + '</div>'
-																	+ '<div class="event-name">' + tiva_events[events[i].id].name + '</div>'
-																	+ '<div class="event-date"><i class="fa fa-calendar-o"></i>' + event_day + ', ' + event_date + event_end_time + '</div>'
-																	+ '<div class="event-time">' + event_time + '</div>'
-																	+ '<div class="event-location">' + event_location + '</div>'
-																	+ event_desc
+																	+ '</div>'
+																	+ '<div class="col-md-7">'
+																	+ '<div class="event-name"><h2>' + tiva_events[events[i].id].name + '</h2></div>'
+// 																	+ '<div class="event-time">' + event_time + '</div>'
+// 																	+ '<div class="event-location">' + event_location + '</div>'
+// 																	+ event_desc																	
+																	+ '</div>'
+																	+ '</div>'
+				
+						
+																	
+
 																+ '</div>'
 															);
 			}
