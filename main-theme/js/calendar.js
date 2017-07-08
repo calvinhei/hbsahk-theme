@@ -368,13 +368,13 @@ function showTooltip(id, layout, day, month, year, el) {
 		// Change position of tooltip
 		var index = jQuery(el).parent().find('.calendar-event-name').index(el);
 		var count = jQuery(el).parent().find('.calendar-event-name').length;
-		var bottom = 32 + ((count - index - 1) * 25);
+		var bottom = 32 + ((count - index - 1) * 20);
 		jQuery(el).parent().find('.tiva-event-tooltip').css('bottom', bottom + 'px');
 		
 		jQuery(el).parent().find('.tiva-event-tooltip').html(	'<div class="event-tooltip-item">'
 																+ event_time
 																+ '<div class="event-name">' + tiva_events[id].name + '</div>'
-																+ '<div class="event-image">' + event_image + '</div>'
+// 																+ '<div class="event-image">' + event_image + '</div>'
 																+ '<div class="event-intro">' + getShortText(tiva_events[id].description, 10) + '</div>'
 																+ '</div>'
 															);
@@ -400,7 +400,7 @@ function showTooltip(id, layout, day, month, year, el) {
 				jQuery(el).find('.tiva-event-tooltip').append(	'<div class="event-tooltip-item">'
 																+ event_time
 																+ '<div class="event-name">' + tiva_events[events[i].id].name + '</div>'
-																+ '<div class="event-image">' + event_image + '</div>'
+// 																+ '<div class="event-image">' + event_image + '</div>'
 																+ '<div class="event-intro">' + getShortText(tiva_events[events[i].id].description, 10) + '</div>'
 																+ '</div>'
 															);
