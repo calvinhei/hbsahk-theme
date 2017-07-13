@@ -13,8 +13,7 @@ var nsOptions =
     navigateByTap: true,
     pauseOnHover: false,
     keyboardNav: true,
-    before: function (currentIdx, nextIdx, manual) { if(manual && typeof mcThumbnailSlider!="undefined") mcThumbnailSlider.display(nextIdx);},
-    license: "b2e981"
+    before: function (currentIdx, nextIdx, manual) { if(manual && typeof mcThumbnailSlider!="undefined") mcThumbnailSlider.display(nextIdx);}
 };
 
 var nslider = new NinjaSlider(nsOptions);
