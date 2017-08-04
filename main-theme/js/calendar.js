@@ -20,7 +20,21 @@ var yearNum_full = todaysYear;
 var monthNum_compact = todaysMonth;
 var yearNum_compact = todaysYear;
 var events_json = "events.json";
+var events_php = "events.php";
 // var events_json = base_url+"api/events?rows=10&filters=display:show&order_by=date:desc&lang="+language;
+
+// alert(events_json);
+/*
+    $.ajax({
+        type: 'GET',
+        data: {},
+        url: base_url+"api/news?filters=display:show&order_by=priority:asc&lang="+language,
+        success: function(data) {
+             console.log('success', data);
+        }      
+    });
+die();
+*/
 
 var tiva_events = [];
 var order_num = 0;
@@ -838,17 +852,34 @@ jQuery(document).ready(function(){
 		});
 	} else { // Get events from php file via ajax
 		jQuery.ajax({
+			
+
+// 			url: base_url+'api/events/detail?lang='+language,
 			url: events_php,
 			dataType: 'json',
 			data: '',
+
+/*
+			url: base_url+"api/events?rows=10&filters=display:show&order_by=date:desc&lang="+language,
+			type: 'GET',
+			data: {},
+*/
+/*
 			beforeSend : function(){
 				jQuery('.tiva-calendar').html('<div class="loading"><img src="assets/images/loading.gif" /></div>');
 			},
+*/
 			success: function(data) {
+				console.log('success', data);
+				
 				for (var i = 0; i < data.length; i++) {
+					
+// 					var event_date = new Date(data[i].year, Number(data[i].month) - 1, data[i].day);
 					var event_date = new Date(data[i].year, Number(data[i].month) - 1, data[i].day);
+					
 					data[i].date = event_date.getTime();
 					tiva_events.push(data[i]);
+					
 				}
 				
 				// Sort events by date
@@ -875,6 +906,13 @@ jQuery(document).ready(function(){
 			}
 		});	
 	}
+	
+	
+	
+	
+	
+	
+	
 	
 	// Click - Calendar view btn
 	jQuery('.tiva-events-calendar .calendar-view').click(function(){
@@ -1001,7 +1039,7 @@ function showEventDetailList(id, layout, day, month, year) {
 		
 		// Event image
 		if (tiva_events[id].image) {
-			var event_image = '<img src="' + dist_url + '/images/' + tiva_events[id].image + '" alt="' + tiva_events[id].name + '" />';
+			var event_image = '<img src="' + dist_url + 'images/' + tiva_events[id].image + '" alt="' + tiva_events[id].name + '" />';
 		} else {
 			var event_image = '';
 		}
